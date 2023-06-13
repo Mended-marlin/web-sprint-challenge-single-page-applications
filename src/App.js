@@ -15,7 +15,7 @@ function App() {
 
             <div>
             <Link className="navLink" to="/">Home</Link>
-            <Link to="pizza">Order Now!</Link>
+            <Link id="order-pizza" to="pizza">Order Now!</Link>
             </div>
               
         </nav>

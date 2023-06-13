@@ -1,8 +1,9 @@
 
-import {useState} from "react"
+import {useState, useEffect} from "react"
 import { Link, Route, Routes } from "react-router-dom"
 import OrderConfirmation from "./OrderConfirmation"
-
+import axios from 'axios'
+import * as Yup from "yup"
 
 
 
@@ -16,10 +17,54 @@ export default function Order(props) {
         toppings: []
     })
 
+    const formSchema = Yup.object().shape({
+        name: Yup
+        .string()
+        .min(2, "name must be at least 2 characters")
+        .required("Name is required")
+        ,
+        specialInstructions: Yup
+        .string() 
+    })
+
+    const [errors, setErrors] = useState({
+        name: ''
+    })
+
+    
+    const inputChange = e => {
+        const {name, value} = e.target
+
+    Yup
+    .reach(formSchema, name)
+    .validate(value)
+    .then(valid => {
+        setErrors({
+            ...errors, [name]: ""
+        })
+    })
+    .catch(err => {
+        setErrors({
+            ...errors, [name]: err.errors[0]
+        })
+    })
+    }
+
+    useEffect(() => {
+        formSchema.isValid(order).then(valid => {
+            // setButtonDisable(!valid)
+        })
+    },[order])
+
+    
+
+
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(order)
-        return order
+        const formData = new FormData(e.target)
+        axios.post("https://reqres.in/api/orders", formData)
+        .then(res => console.log(res))
+        .catch(err => console.log(err))
 
     }
     
@@ -28,11 +73,10 @@ export default function Order(props) {
             e.target.checked ? setOrder({...order, toppings : [...order.toppings, e.target.value]}) : setOrder({...order, toppings: order.toppings.filter(top => top !== e.target.value)})
         }
         else{
+            inputChange(e)
             setOrder({...order, [e.target.name]: e.target.value })
         }
         
-
-        console.log(order)
         
     }
 
@@ -43,7 +87,8 @@ export default function Order(props) {
             <h2>Create Your Pizza</h2>
             <label>
                 Name: &nbsp; 
-                <input name="name" onChange={handleChange} type="text" placeholder="First and Last"/>
+                <input id="name-input" name="name" onChange={handleChange} type="text" placeholder="First and Last"/>
+                { errors.name.length > 0 && <p className="error">{errors.name}</p> }
             </label><br/>
 
             <label>
@@ -77,7 +122,7 @@ export default function Order(props) {
 
             <label>
                 Special Instructions: &nbsp; 
-                <textarea name="specialInstructions" onChange={handleChange} />
+                <textarea id="special-text" name="specialInstructions" onChange={handleChange} />
             </label><br/>
 
             <button id="order-button">Add to Order</button>
