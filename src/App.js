@@ -1,11 +1,37 @@
-import React from "react";
+import {Route, Routes, Link} from "react-router-dom"
+import Order from "./components/Order"
+import Home from "./components/Home"
+import OrderConfirmation from "./components/OrderConfirmation";
 
-const App = () => {
+import './App.css';
+
+function App() {
+
+
   return (
-    <>
-      <h1>Lambda Eats</h1>
-      <p>You can remove this code and create your own header</p>
-    </>
-  );
-};
+    <div className="app">
+      <nav>
+            <p>BloomTech Pizza</p>
+
+            <div>
+            <Link className="navLink" to="/">Home</Link>
+            <Link to="pizza">Order Now!</Link>
+            </div>
+              
+        </nav>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="pizza" element={<Order />}/>
+          {/* <Route path="pizza/confirmation" element={<OrderConfirmation />} /> */}
+          <Route path="pizza/confirmation" element={<OrderConfirmation />}/>
+        </Routes>  
+        
+        
+      {/* <PromoBanner />
+      <About />
+      <Footer /> */}
+    </div>
+  )
+}
+
 export default App;
