@@ -108,7 +108,7 @@ export default function Order(props) {
             <label className="toppings" name="toppings" onChange={handleChange}>
                 <p>Toppings:</p> <br/>
                 <div className="checkSelect">
-                    <input type="checkbox" id="mushrooms" name="mushrooms" value= "mushrooms" />
+                    <input type="checkbox" id="mushrooms" name="mushrooms" value= "Mushrooms" />
                     <label for="mushrooms">Mushrooms</label>
                 </div>
 
@@ -131,7 +131,7 @@ export default function Order(props) {
 
 
 
-            <label>
+            <label className="specialInstructions">
                 <p>Special Instructions:</p> &nbsp; 
                 <textarea id="special-text" name="specialInstructions" rows="7" cols="40" onChange={handleChange} />
             </label><br/>
@@ -140,7 +140,7 @@ export default function Order(props) {
         </form>
 
         
-        <Footer />
+        
         
     </div>
         

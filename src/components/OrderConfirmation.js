@@ -1,6 +1,8 @@
 import {useLocation} from 'react-router-dom'
 import deliveryPug from '../imgs/pug.gif'
 
+import Footer from "./Footer"
+
 
 export default function OrderConfirmation(props) {
     const location = useLocation()
@@ -9,8 +11,8 @@ export default function OrderConfirmation(props) {
     
     return (
         <div className="orderConfirm">
-        <img className="deliveryPug" src={deliveryPug} alt="delivery pug" style={{height:"10rem", width:"10rem"}}/>
-        <h1>Order is on it's way!</h1>
+        <img className="deliveryPug" src={deliveryPug} alt="delivery pug" />
+        <h1>Pizza Pug is On the Way!</h1>
 
 
         
@@ -18,9 +20,9 @@ export default function OrderConfirmation(props) {
 
             <div className="receipt">
                 <h2 className="listTitle">Customer Information</h2>
-                <ul>
-                    <li><strong>Name on Order:</strong> {order.name}</li>
-                </ul>
+                <p className="receiptName">
+                    Name on Order: <strong>{order.name}</strong> 
+                </p>
                 <h2 className="listTitle">Order Details</h2>
 
                 <h3>Toppings :</h3>
@@ -42,6 +44,7 @@ export default function OrderConfirmation(props) {
 
             </div>
         
+
 
         </div>
     )

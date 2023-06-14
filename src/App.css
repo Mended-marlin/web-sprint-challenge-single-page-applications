@@ -9,6 +9,8 @@
   color: white;
 
   position: relative;
+
+  overflow-x: hidden;
 }
 
 nav {
@@ -25,6 +27,24 @@ nav {
   z-index: 100;
 
   background-color: black;
+}
+
+.navLinks{
+  display: flex;
+  gap: 1rem;
+
+  margin-right: 2rem;
+  padding: 0;
+}
+
+.navLink, #order-pizza {
+  text-decoration: none;
+  color: white;
+  padding: 2rem 0;
+}
+
+.navLink:hover, #order-pizza:hover, .navLink:focus, #order-pizza:focus {
+  background-color: grey;
 }
 
 

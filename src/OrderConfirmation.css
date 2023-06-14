@@ -1,0 +1,83 @@
+
+
+h1 {
+    width: 100%;
+    text-align: center;
+}
+
+.orderConfirm{
+    margin-top: 10rem;
+}
+
+.deliveryPug {
+    height : 10rem;
+    width: 10rem;
+
+    animation: 3s 1 linear dogRun;
+
+    position: absolute;
+    left: -100%;
+    top: 10%;
+}
+
+
+@keyframes dogRun {
+    0%{
+        left: -25%;
+    }
+    20%{
+        left: 0%
+    }
+    40%{
+        left: 25%;
+    }
+    60%{
+        left: 50%;
+    }
+    80%{
+        left: 75%;
+    }
+    100%{
+        left: 100%;
+    }
+}
+
+
+.receipt{
+    height: 100%;
+
+    background-color: white;
+    color: black;
+    border-radius: 3%;
+
+    padding: 1em;
+    width: 75%;
+    margin: 0 auto;
+
+
+}
+
+.listTitle{
+    background-color: #444b58;
+    color: white;
+
+    width: 105%;
+
+    padding-left: 1rem;
+    
+}
+
+.receipt ul {
+    list-style: none;
+}
+
+
+.receiptName::before{
+    content: ""
+}
+
+li::before {
+    content: '-';
+    margin-right: 2rem;
+    
+}
