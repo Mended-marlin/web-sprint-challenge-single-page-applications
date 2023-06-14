@@ -3,12 +3,16 @@ import {useState, useEffect} from "react"
 import { Link, Route, Routes } from "react-router-dom"
 import OrderConfirmation from "./OrderConfirmation"
 import axios from 'axios'
-import * as Yup from "yup"
+import {object, string, number, date, InferType} from "yup"
+import Footer from "./Footer"
+
+
 
 
 
 export default function Order(props) {
     
+    const [post, setPost] = useState([])
 
     const [order, setOrder] = useState({
         name: "",
@@ -17,14 +21,8 @@ export default function Order(props) {
         toppings: []
     })
 
-    const formSchema = Yup.object().shape({
-        name: Yup
-        .string()
-        .min(2, "name must be at least 2 characters")
-        .required("Name is required")
-        ,
-        specialInstructions: Yup
-        .string() 
+    const formSchema = object({
+        name: string().min(2, "name must be at least 2 characters")
     })
 
     const [errors, setErrors] = useState({
@@ -35,9 +33,7 @@ export default function Order(props) {
     const inputChange = e => {
         const {name, value} = e.target
 
-    Yup
-    .reach(formSchema, name)
-    .validate(value)
+    formSchema.validate(order, {strict:true})
     .then(valid => {
         setErrors({
             ...errors, [name]: ""
@@ -52,7 +48,7 @@ export default function Order(props) {
 
     useEffect(() => {
         formSchema.isValid(order).then(valid => {
-            // setButtonDisable(!valid)
+            // setButtonDisabled(!valid)
         })
     },[order])
 
@@ -61,10 +57,13 @@ export default function Order(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        const formData = new FormData(e.target)
-        axios.post("https://reqres.in/api/orders", formData)
-        .then(res => console.log(res))
-        .catch(err => console.log(err))
+        axios
+        .post("https://reqres.in/api/orders", order)
+        .then(res => {
+            setPost(res.data)
+            console.log("success", res)
+        })
+        .catch(err => console.log(err.response))
 
     }
     
@@ -85,13 +84,17 @@ export default function Order(props) {
     <div className="orderPage">
         <form id="pizza-form" onSubmit={handleSubmit}>
             <h2>Create Your Pizza</h2>
-            <label>
+            <label className="name">
                 Name: &nbsp; 
                 <input id="name-input" name="name" onChange={handleChange} type="text" placeholder="First and Last"/>
+                
+                
+            </label>
+            <div>
                 { errors.name.length > 0 && <p className="error">{errors.name}</p> }
-            </label><br/>
+            </div><br/>
 
-            <label>
+            <label className="size">
                 Size: &nbsp;
                 <select id="size-dropdown" name="size" onChange={handleChange}>
                     <option>Personal</option>
@@ -103,33 +106,41 @@ export default function Order(props) {
             </label><br/>
 
             <label className="toppings" name="toppings" onChange={handleChange}>
-                Toppings: <br/>
-                <input type="checkbox" id="mushrooms" name="mushrooms" value= "mushrooms" />
-                <label for="mushrooms">Mushrooms</label>
+                <p>Toppings:</p> <br/>
+                <div className="checkSelect">
+                    <input type="checkbox" id="mushrooms" name="mushrooms" value= "mushrooms" />
+                    <label for="mushrooms">Mushrooms</label>
+                </div>
 
-                <input type="checkbox" id="sausage" name="sausage" value="Sausage" />
-                <label for="sausage">Sausage</label>
+                <div className="checkSelect">
+                    <input type="checkbox" id="sausage" name="sausage" value="Sausage" />
+                    <label for="sausage">Sausage</label>
+                </div>
 
-                <input type="checkbox" id="bellPepper" name="bellPepper" value="Bell Pepper" />
-                <label for="bellPepper">Bell Pepper</label>
+                <div className="checkSelect">
+                    <input type="checkbox" id="bellPepper" name="bellPepper" value="Bell Pepper" />
+                    <label for="bellPepper">Bell Pepper</label>
+                </div>
 
-
-                <input type="checkbox" id="mystery" name="mystery" value="Mystery"/>
-                <label for="mystery">Mystery</label>
+                <div className="checkSelect">
+                    <input type="checkbox" id="mystery" name="mystery" value="Mystery"/>
+                    <label for="mystery">Mystery</label>
+                </div>
+                
             </label><br/>
 
 
 
             <label>
-                Special Instructions: &nbsp; 
-                <textarea id="special-text" name="specialInstructions" onChange={handleChange} />
+                <p>Special Instructions:</p> &nbsp; 
+                <textarea id="special-text" name="specialInstructions" rows="7" cols="40" onChange={handleChange} />
             </label><br/>
 
-            <button id="order-button">Add to Order</button>
+            <Link onSubmit={handleSubmit} id="order-button" to="confirmation" state={order}> Place Order! </Link>
         </form>
 
-        <Link to="confirmation" state={order}> Test</Link>
-
+        
+        <Footer />
         
     </div>
         

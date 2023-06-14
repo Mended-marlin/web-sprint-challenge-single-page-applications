@@ -1,0 +1,89 @@
+
+
+
+
+
+
+
+/* Promo Hero */
+.promoBanner {
+    margin-top: 3em;
+    width: 100%;
+    background: no-repeat center/100%  url("./imgs/promoBackground.jpg");
+
+    position: relative;
+
+    z-index: 1
+  }
+.promoLink{
+    position: absolute;
+    right: 6.5rem;
+    bottom: 2.5rem;
+
+
+    border-radius: 5px;
+    text-decoration: none;
+    background-color: rgb(225, 4, 4);
+    color: white;
+
+    padding: .25rem;
+    font-size:1.75rem;
+}
+
+.promoLink:hover, .promoLink.focus {
+    background: red;
+}
+
+
+
+/* Main section */
+main {
+    text-align: center;
+}
+
+.about{
+    margin: 0 auto 5rem;
+    width: 90%;
+    height: 50vh;
+}
+
+/* Reviews */
+
+.reviewContainer{
+    background-color: grey;
+
+    width: 80%;
+    height: 12rem;
+    margin: 0 auto 5rem;
+
+    border-radius: 4px;
+
+    position: relative;
+}
+
+.reviewPoster{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+
+    padding: 1rem;
+}
+
+.userPortrait{
+    height: 4em;
+    width: 4em;
+    border-radius: 50%;
+}
+
+.reviewComment{
+    height: 75%;
+    width: 50%;
+    position: absolute;
+    right: 2rem;
+    top: 2rem;
+
+
+    border-radius: 4px;
+    background-color: rgba(207, 205, 205, 0.603)
+}

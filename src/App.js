@@ -4,7 +4,8 @@ import Home from "./components/Home"
 import OrderConfirmation from "./components/OrderConfirmation";
 
 import './App.css';
-
+import './Home.css';
+import './Order.css'
 function App() {
 
 

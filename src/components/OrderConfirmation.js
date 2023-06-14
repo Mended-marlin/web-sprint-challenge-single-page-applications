@@ -32,6 +32,14 @@ export default function OrderConfirmation(props) {
                     }
                 </ul>
 
+                {order.specialInstructions.length > 0 ? <div>
+                    <h3>Special Instructions</h3>
+                    <div className="instructionsConfirm" >
+                        <p>{order.specialInstructions}</p>
+                    </div>
+                </div> 
+                : null }
+
             </div>
         
 

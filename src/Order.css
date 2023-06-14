@@ -1,0 +1,65 @@
+.orderPage{
+    margin: 5rem auto;
+}
+
+#pizza-form{
+    background-color: rgba(100, 98, 98, 0.388);
+    padding: 2rem;
+}
+
+
+.name, .size{
+    display: flex; 
+    justify-content: left;
+}
+
+.size select{
+    font-size: 1rem;
+    margin-left: 1rem;
+}
+
+.name input{
+    font-size: 1.125rem;
+
+}
+
+.toppings p{
+    font-size: 1.5rem;
+}
+.checkSelect{
+    display: flex; 
+    justify-content: left;
+
+    gap: 1rem;
+
+    margin-bottom: .5rem;
+}
+
+
+#special-text{
+    font-size: 1rem;
+}
+
+#order-button{
+    display:block;
+    text-decoration: none;
+
+    text-align:center;
+    font-size: 1.5rem;
+
+    background-color: green;
+    color: white;
+    padding:.125rem;
+    border-radius: 5px;
+    
+    width: 35%;
+    margin: 2rem auto .5rem;
+}
+
+#order-button:hover, #order-button:focus{
+    background-color: rgb(1, 175, 1);
+}
+
+.error{
+    color: red;
+}

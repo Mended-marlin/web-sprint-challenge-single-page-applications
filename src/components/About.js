@@ -4,8 +4,12 @@ export default function About(props) {
     
 
     return (
-        <p>
-           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </p>
+        <div className="about">
+           <p>We are a family. We make imaginary pizza.</p>
+           
+           <p>
+           We provide this service to the community at absolutely no cost to you. In other words, for FREE. No need to thank us. We pride ourselves in the quality of each pie to make up for the lack of aknowledgment.
+           </p>
+        </div>
     )
 }
